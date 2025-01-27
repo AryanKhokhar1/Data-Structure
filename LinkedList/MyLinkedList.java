@@ -1,97 +1,129 @@
 
+
+// When using this in MyLinkedList we are talking about whole LinkedList
+// When we are using Node we are using Node object
+
+class MyLinkedListException extends Exception{
+
+    MyLinkedListException(String str){
+        super(str);
+    }
+}
+
 public class MyLinkedList {
 
 
-    class Node{
-        int val;
-        Node next;
+    private Node head;
+    private Node tail;
+    private int size;
 
-        Node(){
-            this.next = null;
-        }
-        Node(int val){
-            this.val = val;
-            this.next = null;
-        }
-        Node (int val, Node next){
-            this.val = val;
-            this.next = next;
-        }
-    }
-    Node head;
-    Node tail;
-    int size;
-    MyLinkedList() {
+    MyLinkedList(){
         this.size = 0;
     }
 
-    void addLast(int val){
-        if(this.size == 0){
-            firstAdd(val);
-        }else{
-            Node node = new Node(val);
-            tail.next = node;
-            tail = tail.next;
-            this.size++;
+    private class Node{
+        private int value;
+        private Node next;
+        public Node(int val){
+            this.value = val;
         }
-    }
-    void firstAdd(int val){
-        Node node = new Node(val);
-        node.next = head;
-        head = node;
-        if(this.size == 0){
-            this.head = node;
-            this.tail = node;
+        public Node(int val, Node next){
+            this.value = val;
+            this.next = next;
         }
-        this.size++;
     }
 
-    void display(){
-        Node temp = head;
-        while (temp != null) { 
-            System.out.print(temp.val+"->");
+    public int size(){
+        return this.size;
+    }
+    public void addLast(int value){
+        if(this.size == 0){
+            this.addFirst(value);
+            return;
+        }
+        Node node = new Node(value);
+        this.tail.next = node;
+        node.next = null;
+        this.tail = node;
+        size++;
+        return;
+    }
+
+    public void addFirst(int value) {
+        if (this.size == 0) {
+            Node node = new Node(value);
+            this.head = node;
+            this.tail = this.head;
+            size++;
+            return;
+        }
+
+        Node node = new Node(value, this.head);
+        this.head = node;
+        size++;
+        return;
+    }
+
+    public void display(){
+        Node temp = this.head;
+        while(temp != null){
+            System.out.print(temp.value+" -> ");
             temp = temp.next;
         }
-        System.out.println("");
+        System.out.print("End");
+        System.out.println();
     }
-    
-    boolean removebyPosition(int position){
-        if(position > size){
-            return false;
+
+    public void removeFirst(){
+        this.head = this.head.next;
+        size--;
+    }
+    public int valueAt(int index){
+        if(index<this.size && index >= 0){
+
+            // It have only declaration so it hold only
+            Node temp;
+            temp = this.head;
+            for(int i = 0; i!=index; i++){
+                temp = temp.next;
+            }
+            return temp.value;
         }else{
-            Node temp = head;
-            if(position == 1){
-                this.head = this.head.next;
-                this.size--;
-                return true;
-            }else{
-                for(int i = 2; i<=position; i++){
-                    if(i == position){
-                        temp.next = temp.next.next;
-                        this.size--;
-                        return true;
-                    }
-                    temp = temp.next;
-                }
-                return false;
+            return -1;
+        }
+
+    }
+    public void removeLast(){
+        if(this.size>1){
+            Node temp;
+            temp = head;
+            while(temp.next != this.tail){
+                temp = temp.next;
             }
+            this.tail = temp;
+            this.tail.next = null;
+        }else if(this.size == 1){
+            this.head = null;
+            this.tail = null;
         }
     }
-    boolean removebyValue(int val){
-        Node temp = head;
-        if(this.head.val == val){
-            this.head = this.head.next;
-            this.size--;
-            return true;
-        }
-        while(temp.next != null){
-            if(temp.next.val == val){
-                temp.next = temp.next.next;
-                this.size--;
-                return true;
+    public void insert(int index, int value){
+        if(index < this.size && index>= 0){
+
+            Node temp = this.head;
+            for(int i = 1; i< index; i++){
+                temp = temp.next;
             }
-            temp = temp.next;
+            Node newNode = new Node(value,temp.next);
+            temp.next = newNode;
+            size++;
         }
-        return false;
+    }
+    public int get(int position){
+        Node node = this.head;
+        for(int i = 1;i<position; i++){
+            node = node.next;
+        }
+        return node.value;
     }
 }

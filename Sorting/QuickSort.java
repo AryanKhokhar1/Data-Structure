@@ -27,7 +27,7 @@ class QuickSort{
         quickSort(arr,low,end);
     }
     public static void main(String[] args) {
-        int[] arr = {5,4,6,7,8,9};
+        int[] arr = {11,9,12,7,3};
         quickSort(arr,0,arr.length-1);
         System.out.println(Arrays.toString(arr));
     }

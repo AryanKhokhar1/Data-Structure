@@ -1,0 +1,1 @@
+times = int(input())
