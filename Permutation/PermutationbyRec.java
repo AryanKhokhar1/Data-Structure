@@ -8,10 +8,11 @@ public class PermutationbyRec {
             return;
         }
         char ch = unstr.charAt(0);
-        permuation(pstr+ch, unstr);
-        permuation(ch+pstr, unstr);
+        for(int i = 0; i<pstr.length()+1; i++){
+            permuation(pstr.substring(0,i) + ch + pstr.substring(i,pstr.length()),unstr.substring(1));
+        }
     }
     public static void main(String[] args) {
-        permuation("", "ab");
+        permuation("", "abc");
     }
 }
