@@ -7,4 +7,6 @@ class Permutation:
             ans.append(self.permutation(pstr[0:i]+unstr[0]+pstr[i:],unstr[1:]))
         return ans
 obj = Permutation()
-print(obj.permutation("","abc"))
+lis = obj.permutation("","abc")
+lis.sort()
+print(lis)
