@@ -35,11 +35,15 @@ class BoundaryTraversal:
 
 t1 = BinaryTree(1)
 t1.left = BinaryTree(2)
+t1.left.left = BinaryTree(10)
 t1.right = BinaryTree(7)
 t1.right.left = BinaryTree(3)
 # t1.left.left = BinaryTree(3)
 t1.left.right = BinaryTree(4)
 t1.left.right.left = BinaryTree(5)
+t1.left.right.left.left = BinaryTree(11)
+t1.left.right.left.left = BinaryTree(12)
+
 t1.left.right.right = BinaryTree(6)
 
 obj = BoundaryTraversal()
