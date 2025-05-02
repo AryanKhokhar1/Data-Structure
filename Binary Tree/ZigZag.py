@@ -11,7 +11,6 @@ class ZigZag:
         lefttoright = False
 
         while queue:
-            
             l = len(queue)
             lis = []
             for i in range((l)):

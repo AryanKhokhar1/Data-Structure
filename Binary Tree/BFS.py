@@ -1,3 +1,4 @@
+from BinaryTree import BinaryTree
 class BFS:
 
     # Traversal a Tree level wise
@@ -27,3 +28,14 @@ class BFS:
             return self.bfsrecursion(self.queue.pop(0))
         else:
             return self.bfs_list
+        
+t1 = BinaryTree(1)
+t1.left = BinaryTree(2)
+t1.right = BinaryTree(7)
+# t1.left.left = BinaryTree(3)
+t1.left.right = BinaryTree(4)
+t1.left.right.left = BinaryTree(5)
+t1.left.right.right = BinaryTree(6)
+
+obj = BFS()
+(obj.bfsiterative(t1))
